@@ -1,0 +1,15 @@
+<script type="text/javascript">
+    function activeSSE(id) {
+        const eventSource = new EventSource(`http://localhost:3000/open/${id}`);
+        eventSource.onmessage = ({ data }) => {
+            const message = document.createElement('li');
+            message.innerText = 'New message ' + data;
+            document.body.appendChild(message);
+        }
+    }
+
+</script>
+
+<button onclick="activeSSE(1)">Emit to user with ID: 1</button>
+
+<button onclick="activeSSE(2)">Emit to user with ID: 2</button>
